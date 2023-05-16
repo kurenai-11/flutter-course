@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         ),
         body: const Center(
           child: Question(
-            category: 'Math',
+            category: QuestionCategory.math,
             questionContent: 'What is 2+2?',
           ),
         ),

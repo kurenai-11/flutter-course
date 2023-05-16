@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
 
-enum QuestionCategory {
-  math,
-  science,
-  history;
-
-  @override
-  String toString() {
-    final nameArray = name.split("");
-    return "${nameArray[0].toUpperCase()}${nameArray.sublist(1).join()}";
-  }
-}
-
 class Question extends StatelessWidget {
-  final QuestionCategory category;
+  final String category;
   final String questionContent;
+  final String imageSrc;
 
   const Question({
     super.key,
     required this.category,
     required this.questionContent,
+    required this.imageSrc,
   });
 
   @override
@@ -28,8 +18,17 @@ class Question extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          category.toString(),
+          category,
           style: const TextStyle(fontSize: 48),
+        ),
+        const SizedBox(
+          height: 12,
+        ),
+        Image.network(
+          imageSrc,
+          width: 200,
+          height: 150,
+          fit: BoxFit.cover,
         ),
         const SizedBox(
           height: 12,
@@ -37,6 +36,7 @@ class Question extends StatelessWidget {
         Text(
           questionContent,
           style: const TextStyle(fontSize: 24),
+          textAlign: TextAlign.center,
         )
       ],
     );
