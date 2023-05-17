@@ -40,8 +40,8 @@ class MyApp extends StatelessWidget {
         questionContent: "What is the meaning of life?"),
   ];
 
-  List<Question> get questions =>
-      questionsData.map((e) => Question(question: e)).toList();
+  Iterable<Question> get questions =>
+      questionsData.map((e) => Question(question: e));
 
   // This widget is the root of your application.
   @override
