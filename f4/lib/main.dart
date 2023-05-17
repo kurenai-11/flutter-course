@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
   ];
 
   Iterable<Question> get questions =>
-      questionsData.map((e) => Question(question: e));
+      questionsData.map((q) => Question(question: q));
 
   // This widget is the root of your application.
   @override
