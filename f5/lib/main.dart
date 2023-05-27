@@ -43,9 +43,34 @@ class MyApp extends StatelessWidget {
   Iterable<Question> get questions =>
       questionsData.map((q) => Question(question: q));
 
+  final intro = const <Widget>[
+    Text(
+      "I am too lazy to search for different images...",
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        decoration: TextDecoration.underline,
+        decorationColor: Color(0xfff0f0d8),
+        shadows: [
+          Shadow(
+            color: Color(0xffb11628),
+            blurRadius: 3,
+            offset: Offset(2, 1),
+          ),
+          Shadow(
+            color: Colors.amber,
+            blurRadius: 3,
+            offset: Offset(-1, -1),
+          )
+        ],
+        fontSize: 24,
+      ),
+    ),
+  ];
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
     return MaterialApp(
       title: 'quiz-poker',
       darkTheme: ThemeData.dark(),
@@ -56,40 +81,30 @@ class MyApp extends StatelessWidget {
         ),
         body: Center(
           child: SingleChildScrollView(
+            scrollDirection: orientation == Orientation.portrait
+                ? Axis.vertical
+                : Axis.horizontal,
             child: Container(
               padding: const EdgeInsets.all(6),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  const Text(
-                    "I am too lazy to search for different images...",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      decorationColor: Color(0xfff0f0d8),
-                      shadows: [
-                        Shadow(
-                          color: Color(0xffb11628),
-                          blurRadius: 3,
-                          offset: Offset(2, 1),
+              child: orientation == Orientation.portrait
+                  ? Column(
+                      children: [
+                        ...intro,
+                        const SizedBox(
+                          height: 6,
                         ),
-                        Shadow(
-                          color: Colors.amber,
-                          blurRadius: 3,
-                          offset: Offset(-1, -1),
-                        )
+                        ...questions
                       ],
-                      fontSize: 24,
+                    )
+                  : Row(
+                      children: [
+                        ...intro,
+                        const SizedBox(
+                          width: 6,
+                        ),
+                        ...questions
+                      ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  ...questions
-                ],
-              ),
             ),
           ),
         ),

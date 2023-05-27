@@ -39,31 +39,48 @@ class Question extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          question.category.toString(),
-          style: const TextStyle(fontSize: 48),
+    final media = MediaQuery.of(context);
+    final orientation = media.orientation;
+    final size = media.size;
+    return Container(
+      width: 300,
+      height: orientation == Orientation.landscape ? size.height : 300,
+      decoration: BoxDecoration(
+        color: Theme.of(context).cardColor,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(6),
         ),
-        const SizedBox(
-          height: 12,
-        ),
-        Image.network(
-          question.category.imageSrc,
-          width: 200,
-          height: 150,
-          fit: BoxFit.cover,
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        Text(
-          question.questionContent,
-          style: const TextStyle(fontSize: 24),
-          textAlign: TextAlign.center,
-        )
-      ],
+      ),
+      margin: orientation == Orientation.portrait
+          ? const EdgeInsets.fromLTRB(0, 3, 0, 3)
+          : const EdgeInsets.fromLTRB(3, 0, 3, 0),
+      padding: const EdgeInsets.fromLTRB(4, 0, 4, 0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            question.category.toString(),
+            style: const TextStyle(fontSize: 40),
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          Image.network(
+            question.category.imageSrc,
+            width: 150,
+            height: 100,
+            fit: BoxFit.cover,
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          Text(
+            question.questionContent,
+            style: const TextStyle(fontSize: 24),
+            textAlign: TextAlign.center,
+          )
+        ],
+      ),
     );
   }
 }
