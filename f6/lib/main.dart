@@ -78,7 +78,7 @@ class _MyAppState extends State<MyApp> {
     final orientation = MediaQuery.of(context).orientation;
     return MaterialApp(
       title: 'quiz-poker',
-      darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData.dark().copyWith(useMaterial3: true),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
